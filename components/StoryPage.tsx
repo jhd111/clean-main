@@ -11,7 +11,7 @@ type Props = { music: boolean };
 
 // ✏️ Put your WhatsApp number here: country code + number, digits only (no +, spaces or dashes).
 // Example for Pakistan: 923001234567
-const WHATSAPP_NUMBER = '000000000000';
+const WHATSAPP_NUMBER = '923001234567';
 // The message that appears ready-to-send in her WhatsApp when she taps the link.
 const WHATSAPP_MESSAGE = 'I love you too\nMy love, I will unblock you immediately.';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
