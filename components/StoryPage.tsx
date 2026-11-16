@@ -9,6 +9,13 @@ import ContactSection from './ContactSection';
 
 type Props = { music: boolean };
 
+// ✏️ Put your WhatsApp number here: country code + number, digits only (no +, spaces or dashes).
+// Example for Pakistan: 923001234567
+const WHATSAPP_NUMBER = '000000000000';
+// The message that appears ready-to-send in her WhatsApp when she taps the link.
+const WHATSAPP_MESSAGE = 'I love you too\nMy love, I will unblock you immediately.';
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 const moments = [
   { number: '01', date: 'THE BEGINNING', title: 'The first time I saw you', text: 'Some moments seem ordinary while they are happening. Later, you realise they quietly became the beginning of something. This is where my story starts.' },
   { number: '02', date: 'SOMEWHERE ALONG THE WAY', title: 'The little things', text: 'Maybe it was a smile, a passing moment, or something you said without thinking. Little by little, the smallest details started to mean a little more.' },
@@ -92,6 +99,6 @@ export default function StoryPage({ music }: Props) {
 
     <ContactSection />
 
-    <footer className="site-footer"><div><a className="wordmark" href="#top">UNTOLD <span>STORY</span></a><p>Made with care, and a little courage.</p></div><div className="social-links"><a href="https://wa.me/000000000000" target="_blank" rel="noreferrer">WhatsApp ↗</a><a href="https://instagram.com/yourusername" target="_blank" rel="noreferrer">Instagram ↗</a></div><span className="footer-note">© A STORY KEPT WITH CARE</span></footer>
+    <footer className="site-footer"><div><a className="wordmark" href="#top">UNTOLD <span>STORY</span></a><p>Made with care, and a little courage.</p></div><div className="social-links"><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp ↗</a><a href="https://instagram.com/yourusername" target="_blank" rel="noreferrer">Instagram ↗</a></div><span className="footer-note">© A STORY KEPT WITH CARE</span></footer>
   </main>;
 }
