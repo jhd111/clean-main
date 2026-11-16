@@ -5,6 +5,7 @@ import FloatingHearts from './FloatingHearts';
 import Butterflies from './Butterflies';
 import Butterfly from './Butterfly';
 import IntroSplash from './IntroSplash';
+import ContactSection from './ContactSection';
 
 type Props = { music: boolean };
 
@@ -64,7 +65,7 @@ export default function StoryPage({ music }: Props) {
     {!introDone && <IntroSplash onDone={() => setIntroDone(true)} />}
     <div className="burst-layer" aria-hidden="true">{bursts.map(b => <span key={b.id} className={`burst-heart${b.fly ? ' burst-fly' : ''}`} style={{ left: b.x, top: b.y, fontSize: b.fly ? 16 : b.s, ['--dx' as string]: `${b.dx}px`, ['--dy' as string]: `${b.dy}px` }}>{b.fly ? <Butterfly style={{ width: '2.6em', height: '2.1em', ['--w1' as string]: '#f3a6b3', ['--w2' as string]: '#fff' }} /> : '♥'}</span>)}</div>
     {music && <audio ref={audioRef} src="/audio/soft-piano-loop.wav" loop preload="none" />}
-    <nav className="top-nav"><a href="#top" className="wordmark">UNTOLD <span>STORY</span></a><div className="nav-right"><a href="#story" className="nav-story">The story</a><a href="#letter" className="nav-letter">A letter ♥</a>{music && <button className="music-toggle" onClick={toggleMusic} aria-label={playing ? 'Pause music' : 'Play music'}>{playing ? 'Ⅱ' : '♫'} <span>{playing ? 'Pause' : 'Play music'}</span></button>}</div></nav>
+    <nav className="top-nav"><a href="#top" className="wordmark">UNTOLD <span>STORY</span></a><div className="nav-right"><a href="#story" className="nav-story">The story</a><a href="#contact" className="nav-contact">Write to me</a><a href="#letter" className="nav-letter">A letter ♥</a>{music && <button className="music-toggle" onClick={toggleMusic} aria-label={playing ? 'Pause music' : 'Play music'}>{playing ? 'Ⅱ' : '♫'} <span>{playing ? 'Pause' : 'Play music'}</span></button>}</div></nav>
 
     <section className="story-hero" id="top">
       <FloatingHearts count={18} /><Butterflies count={5} tone="dark" /><div className="hero-orbit orbit-one"/><div className="hero-orbit orbit-two"/><div className="hero-content">
@@ -87,7 +88,9 @@ export default function StoryPage({ music }: Props) {
 
     <section className="letter-section" id="letter"><FloatingHearts count={12} /><Butterflies count={3} tone="dark" /><div className="letter-decoration">“</div><p className="eyebrow">A FEW WORDS, FINALLY</p><h2>Things I never<br/><em>quite said.</em></h2><div className="letter-paper reveal"><p className="letter-greeting">Dear you,</p><p>I've wanted to put a few thoughts into words, even if I wasn't sure where to begin. There are little things about you that stayed with me, and moments that became more meaningful than you might imagine.</p><p>I don't expect anything from these words. I just wanted to make a small place for a story that has meant something to me.</p><p>Whatever happens, I hope life brings you kindness, happiness, and all the beautiful things you deserve.</p><p className="letter-signoff">With warmth,<br/><em>Someone who remembers.</em></p></div></section>
 
-    <section className="closing-section"><FloatingHearts count={10} /><Butterflies count={3} tone="light" /><span className="closing-star beat">♥</span><p className="eyebrow">AND THAT'S MY LITTLE STORY</p><h2>Some feelings are<br/><em>quietly beautiful.</em></h2><p>Thank you for being a part of a chapter, even if you never knew you were.</p><a className="back-top" href="#top">BACK TO THE BEGINNING ↑</a></section>
+    <section className="closing-section"><FloatingHearts count={10} /><Butterflies count={3} tone="light" /><span className="closing-star beat">♥</span><p className="eyebrow">AND THAT'S MY LITTLE STORY</p><h2>Some feelings are<br/><em>quietly beautiful.</em></h2><p>Thank you for being a part of a chapter, even if you never knew you were.</p><div className="closing-links"><a className="back-top" href="#top">BACK TO THE BEGINNING ↑</a><a className="back-top write-link" href="#contact">WRITE TO ME ↓</a></div></section>
+
+    <ContactSection />
 
     <footer className="site-footer"><div><a className="wordmark" href="#top">UNTOLD <span>STORY</span></a><p>Made with care, and a little courage.</p></div><div className="social-links"><a href="https://wa.me/000000000000" target="_blank" rel="noreferrer">WhatsApp ↗</a><a href="https://instagram.com/yourusername" target="_blank" rel="noreferrer">Instagram ↗</a></div><span className="footer-note">© A STORY KEPT WITH CARE</span></footer>
   </main>;
