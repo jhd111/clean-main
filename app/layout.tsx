@@ -4,6 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: "A Story I've Never Told",
   description: 'A little corner of the internet for a story worth remembering.',
+  appleWebApp: { capable: true, title: 'Untold Story', statusBarStyle: 'black-translucent' },
 };
 
 export const viewport: Viewport = {

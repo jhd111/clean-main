@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import FloatingHearts from './FloatingHearts';
 import Butterflies from './Butterflies';
 import Butterfly from './Butterfly';
+import IntroSplash from './IntroSplash';
 
 type Props = { music: boolean };
 
@@ -17,6 +18,7 @@ const moments = [
 export default function StoryPage({ music }: Props) {
   const [playing, setPlaying] = useState(false);
   const [entered, setEntered] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -58,7 +60,8 @@ export default function StoryPage({ music }: Props) {
 
   const toggleMusic = () => setPlaying(value => !value);
 
-  return <main className="story-page">
+  return <main className={`story-page${introDone ? ' intro-done' : ''}`}>
+    {!introDone && <IntroSplash onDone={() => setIntroDone(true)} />}
     <div className="burst-layer" aria-hidden="true">{bursts.map(b => <span key={b.id} className={`burst-heart${b.fly ? ' burst-fly' : ''}`} style={{ left: b.x, top: b.y, fontSize: b.fly ? 16 : b.s, ['--dx' as string]: `${b.dx}px`, ['--dy' as string]: `${b.dy}px` }}>{b.fly ? <Butterfly style={{ width: '2.6em', height: '2.1em', ['--w1' as string]: '#f3a6b3', ['--w2' as string]: '#fff' }} /> : '♥'}</span>)}</div>
     {music && <audio ref={audioRef} src="/audio/soft-piano-loop.wav" loop preload="none" />}
     <nav className="top-nav"><a href="#top" className="wordmark">UNTOLD <span>STORY</span></a><div className="nav-right"><a href="#story" className="nav-story">The story</a><a href="#letter" className="nav-letter">A letter ♥</a>{music && <button className="music-toggle" onClick={toggleMusic} aria-label={playing ? 'Pause music' : 'Play music'}>{playing ? 'Ⅱ' : '♫'} <span>{playing ? 'Pause' : 'Play music'}</span></button>}</div></nav>
