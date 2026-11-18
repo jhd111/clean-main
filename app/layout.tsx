@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
+import './urdu.css';
 
 export const metadata: Metadata = {
   title: "A Story I've Never Told",

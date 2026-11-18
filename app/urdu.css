@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap');
+
+/* Urdu sections: romantic Nastaliq calligraphy.
+   Letter-spacing MUST stay 0 — any spacing breaks Urdu letter joins. */
+.ur,
+.ur * {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Aref Ruqaa', serif;
+  letter-spacing: 0 !important;
+  text-transform: none;
+  font-style: normal;
+}
+
+/* Big headings */
+.ur-h2 {
+  font-size: clamp(34px, 5vw, 58px) !important;
+  line-height: 2 !important;
+  font-weight: 500 !important;
+  margin: 10px 0 !important;
+}
+.ur-h3 {
+  font-size: 25px !important;
+  line-height: 2 !important;
+  font-weight: 500 !important;
+  margin: 8px 0 !important;
+}
+
+/* Gradient-clipped <em> needs room so Nastaliq tails are not cut off */
+.ur em {
+  display: inline-block;
+  padding: 0.2em 0.12em 0.35em;
+}
+
+/* Small labels (were spaced capitals in English) */
+.ur-eyebrow {
+  font-size: 15px !important;
+  line-height: 2.2 !important;
+  font-weight: 400 !important;
+}
+
+/* Body copy */
+.ur-body {
+  font-size: 17px !important;
+  line-height: 2.5 !important;
+}
+.section-heading > p.ur-body { font-size: 17px !important; margin-top: 10px; }
+
+/* Cards and letter read right-to-left */
+.moment-card.ur { text-align: right; }
+.moment-card.ur .moment-edit { font-size: 14px !important; }
+.letter-paper.ur { text-align: right; }
+.letter-paper.ur p {
+  font-size: 18px;
+  line-height: 2.6;
+}
+.letter-paper.ur .letter-greeting { font-size: 24px; }
+.letter-paper.ur .letter-signoff { font-size: 19px; }
+
+@media (max-width: 700px) {
+  .letter-paper.ur { padding: 38px 26px; }
+  .ur-body { font-size: 16px !important; }
+}
