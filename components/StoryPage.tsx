@@ -45,7 +45,7 @@ export default function StoryPage({ music }: Props) {
     if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('in-view')); return; }
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
-    }, { threshold: 0.18 });
+    }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
     els.forEach(el => io.observe(el));
     return () => io.disconnect();
   }, []);
@@ -95,7 +95,7 @@ export default function StoryPage({ music }: Props) {
 
     <section className="letter-section" id="letter"><FloatingHearts count={12} /><Butterflies count={3} tone="dark" /><div className="letter-decoration">“</div><p className="eyebrow ur ur-eyebrow" dir="rtl" lang="ur">آخرکار، چند باتیں</p><h2 className="ur ur-h2" dir="rtl" lang="ur">وہ باتیں جو میں<br/><em>کبھی کہہ نہ سکا۔</em></h2>
     <div className="letter-paper ur reveal" dir="rtl" lang="ur"><p className="letter-greeting">تمہارے نام،</p>
-    
+
     <p>
     پھر جب تم نظر آنا بند ہو گئیں تو میری جو روزانہ کی روٹین بن گئی تھی، تمہیں دیکھنے کی، وہ ختم ہو گئی۔ تم سے رابطہ کرنے کا بھی کوئی آپشن نہیں تھا۔ جانِ جہاں، اُس وقت میری حالت بہت خراب ہو گئی تھی۔ بہت مشکل وقت گزارا تھا۔ جتنا خود کو اُس وقت برا کہا، شاید پہلے کبھی اتنا برا نہیں کہا تھا۔
 
