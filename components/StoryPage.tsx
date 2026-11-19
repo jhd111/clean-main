@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { track } from '@vercel/analytics';
 import FloatingHearts from './FloatingHearts';
 import Butterflies from './Butterflies';
 import Butterfly from './Butterfly';
 import IntroSplash from './IntroSplash';
 import ContactSection from './ContactSection';
+import FloatingSocial from './FloatingSocial';
 
 type Props = { music: boolean };
 
@@ -14,6 +16,14 @@ type Props = { music: boolean };
 const WHATSAPP_NUMBER = '923039712240';
 // The message that appears ready-to-send in her WhatsApp when she taps the link.
 const WHATSAPP_MESSAGE = 'I love you too\nMy love, I will unblock you immediately.';
+// Records a "whatsapp_click" event in Google Analytics (and Vercel Analytics on plans that support custom events).
+const trackWhatsAppClick = () => {
+  try {
+    (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'whatsapp_click', { link_url: 'wa.me', transport_type: 'beacon' });
+    track('whatsapp_click');
+  } catch {}
+};
+const INSTAGRAM_URL = 'https://www.instagram.com/jahad.ali111?knvt=aXd5cm40MmhjNjVp';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 const moments = [
@@ -172,7 +182,8 @@ export default function StoryPage({ music }: Props) {
     <section className="closing-section"><FloatingHearts count={10} /><Butterflies count={3} tone="light" /><span className="closing-star beat">♥</span><p className="eyebrow">AND THAT'S MY LITTLE STORY</p><h2>Some feelings are<br/><em>quietly beautiful.</em></h2><p>Thank you for being a part of a chapter, even if you never knew you were.</p><div className="closing-links"><a className="back-top" href="#top">BACK TO THE BEGINNING ↑</a><a className="back-top write-link" href="#contact">WRITE TO ME ↓</a></div></section>
 
     <ContactSection />
+    {introDone && <FloatingSocial whatsappUrl={WHATSAPP_URL} instagramUrl={INSTAGRAM_URL} onWhatsAppClick={trackWhatsAppClick} />}
 
-    <footer className="site-footer"><div><a className="wordmark" href="#top">UNTOLD <span>STORY</span></a><p>Made with care, and a little courage.</p></div><div className="social-links"><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp ↗</a><a href="https://www.instagram.com/jahad.ali111?knvt=aXd5cm40MmhjNjVp" target="_blank" rel="noreferrer">Instagram ↗</a></div><span className="footer-note">© A STORY KEPT WITH CARE</span></footer>
+    <footer className="site-footer"><div><a className="wordmark" href="#top">UNTOLD <span>STORY</span></a><p>Made with care, and a little courage.</p></div><div className="social-links"><a href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={trackWhatsAppClick}>WhatsApp ↗</a><a href="https://www.instagram.com/jahad.ali111?knvt=aXd5cm40MmhjNjVp" target="_blank" rel="noreferrer">Instagram ↗</a></div><span className="footer-note">© A STORY KEPT WITH CARE</span></footer>
   </main>;
 }

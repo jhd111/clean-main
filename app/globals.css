@@ -303,3 +303,19 @@ button,a{touch-action:manipulation}
   .contact-section h2{font-size:clamp(40px,12.5vw,52px);letter-spacing:-1px}
 }
 @media(prefers-reduced-motion:reduce){.contact-send,.contact-error,.contact-sent,.sent-burst span{animation:none}.sent-burst span{opacity:0}}
+
+/* ================= STICKY WHATSAPP + INSTAGRAM (bottom-right) ================= */
+.float-social{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;display:flex;flex-direction:column;gap:12px;transition:opacity .25s ease}
+.fs-btn{position:relative;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;color:#fff;box-shadow:0 8px 22px #00000052,0 0 0 3px #ffffff22;animation:fsPop .7s cubic-bezier(.2,1.4,.4,1) both;transition:transform .2s ease,box-shadow .2s ease;-webkit-tap-highlight-color:transparent}
+.fs-btn svg{width:56%;height:56%;display:block}
+.fs-whatsapp{background:#25d366;animation-delay:.15s}
+.fs-instagram{background:linear-gradient(45deg,#f9a03c 0%,#e1306c 50%,#833ab4 100%);animation-delay:0s}
+.fs-whatsapp:after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:fsRing 2.6s ease-out infinite;pointer-events:none}
+.fs-btn:active{transform:scale(.92)}
+@media(hover:hover){.fs-btn:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 12px 28px #0000066,0 0 0 3px #ffffff33}}
+@keyframes fsPop{from{opacity:0;transform:scale(.3) translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fsRing{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+/* keep the buttons out of the way while someone is typing in the contact form */
+body:has(input:focus,textarea:focus) .float-social{opacity:0;pointer-events:none}
+@media(min-width:701px){.float-social{right:24px;bottom:24px;gap:14px}.fs-btn{width:58px;height:58px}}
+@media(prefers-reduced-motion:reduce){.fs-btn,.fs-whatsapp:after{animation:none}}
